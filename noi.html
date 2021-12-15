@@ -167,7 +167,7 @@
     var n = String(prompt('n'))
     if (n.charCodeAt(0) % 2 == 0) {
       console.log('No')
-    } else {
+    } else if (n.charCodeAt(0) % 2 == 1){
       console.log('Yes')
     }
   </script>
@@ -207,7 +207,8 @@
     var n = Number(prompt('n'))
     if (n % 3 == 0 && n % 5 == 0) {
       console.log('Yes')
-    } else {
+    } 
+    if (n % 3 == 0 && n % 5 !== 0) {
       console.log('No')
     }
   </script>
@@ -263,7 +264,7 @@
     } else if (n === 7) {
       console.log('Yes')
     } else {
-      console.log('Yo')
+      console.log('Yes')
     }
   </script>
   <script id="ch0104/12">

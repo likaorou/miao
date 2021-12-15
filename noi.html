@@ -56,8 +56,8 @@
   <script id="ch0103/09">
     var r = Number(prompt('0<r<=10000')) //pi无定义
     var d = 2 * r
-    var c = 2 * r * Math.PI
-    var s = Math.PI * r * r
+    var c = 2 * r * 3.14159
+    var s = 3.14159 * r * r
     console.log(d.toFixed(4),c.toFixed(4),s.toFixed(4))
   </script>
   <script id="ch0103/10">
@@ -72,7 +72,7 @@
     var a = Number(prompt('a'))
     var b = Number(prompt('b'))
     var r = a % b
-    console.log(r)
+    console.log(r.toFixed(4))
     
   </script>
   
@@ -166,9 +166,9 @@
   <script id="ch0104/04">
     var n = String(prompt('n'))
     if (n.charCodeAt(0) % 2 == 0) {
-      console.log('no')
+      console.log('No')
     } else {
-      console.log('yes')
+      console.log('Yes')
     }
   </script>
   <script id="ch0104/05">
@@ -206,9 +206,9 @@
   <script id="ch0104/08">
     var n = Number(prompt('n'))
     if (n % 3 == 0 && n % 5 == 0) {
-      console.log('yes')
+      console.log('Yes')
     } else {
-      console.log('no')
+      console.log('No')
     }
   </script>
   <script id="ch0104/09">  //用空格隔开
@@ -229,13 +229,13 @@
       }
     } else {
       if (n % 15 == 0) {
-        console.log('3'+''+'5')
+        console.log('3'+' '+'5')
       }
       if (n % 21 == 0) {
-        console.log('3'+''+'7')
+        console.log('3'+' '+'7')
       }
       if (n % 35 == 0) {
-        console.log('5'+''+'7')
+        console.log('5'+' '+'7')
       }
     }
   </script>
@@ -259,11 +259,11 @@
   <script id="ch0104/11">
     var n = Number(prompt('n'))
     if (n % 2 == 0) {
-      console.log('yes')
+      console.log('Yes')
     } else if (n === 7) {
-      console.log('yes')
+      console.log('Yes')
     } else {
-      console.log('no')
+      console.log('Yo')
     }
   </script>
   <script id="ch0104/12">
@@ -271,14 +271,14 @@
     var t = n / 1.2
     if (t > 50) {
       if ((t - 50) * 3 == n) {
-        console.log('all')
+        console.log('All')
       } else if ((t - 50) * 3 < n) {
-        console.log('walk')
+        console.log('Walk')
       } else {
-        console.log('bike')
+        console.log('Bike')
       }
     } else {
-      console.log('walk')
+      console.log('Walk')
     }
   </script>
   <script id="ch0104/13">
@@ -337,14 +337,14 @@
     var a = Number(prompt('a'))
     if (a % 100 === 0){
       if (a % 400 === 0) {
-        console.log('y')
+        console.log('Y')
       } else {
-        console.log('n')
+        console.log('N')
       }
     } else if (a % 4 === 0) {
-      console.log('y')
+      console.log('Y')
     } else {
-      console.log('n')
+      console.log('N')
     }
   </script>
   <script id="ch0104/18">
@@ -406,13 +406,13 @@
     }
     if (b * b - 4 * a * c < 0) {
       if(-b / 2 / a == 0) {
-        x1 = (-b / 2 / a).toFixed(5) + Math.sqrt(4 * a * c - b * b) / 2 / a
-        x2 = (-b / 2 / a).toFixed(5) - Math.sqrt(4 * a * c - b * b) / 2 / a
+        x1 = (-b / 2 / a).toFixed(5) + (Math.sqrt(4 * a * c - b * b) / 2 / a)
+        x2 = (-b / 2 / a).toFixed(5) - (Math.sqrt(4 * a * c - b * b) / 2 / a)
         console.log('x1=' + x1.toFixed(5) + 'i;x2=' + x2.toFixed(5)+'i')
       } else {
-      x1 = -b / 2 / a + Math.sqrt(4 * a * c - b * b) / 2 / a
-      x2 = -b / 2 / a - Math.sqrt(4 * a * c - b * b) / 2 / a
-      console.log('x1=' + x1.toFixed(5) + 'i;x2=' + x2.toFixed(5)+'i')
+      x1 = Math.sqrt(4 * a * c - b * b) / 2 / a
+      x2 = Math.sqrt(4 * a * c - b * b) / 2 / a
+      console.log('x1=' + (-b / 2 / a).toFixed(5) + '+'+x1.toFixed(5) + 'i;x2=' + (-b / 2 / a).toFixed(5) + '+' + x2.toFixed(5)+'i')
       }
     }
   </script>

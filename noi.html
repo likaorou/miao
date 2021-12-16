@@ -407,13 +407,13 @@
     }
     if (b * b - 4 * a * c < 0) {
       if(-b / 2 / a == 0) {
-        x1 = (-b / 2 / a).toFixed(5) + (Math.sqrt(4 * a * c - b * b) / 2 / a)
-        x2 = (-b / 2 / a).toFixed(5) - (Math.sqrt(4 * a * c - b * b) / 2 / a)
-        console.log('x1=' + x1.toFixed(5) + 'i;x2=' + x2.toFixed(5)+'i')
+        x1 = Math.sqrt(4 * a * c - b * b) / 2 / a
+        x2 = -Math.sqrt(4 * a * c - b * b) / 2 / a
+        console.log('x1=' + (-b / 2 / a).toFixed(5) + '+' + x1.toFixed(5) + 'i;x2=' + (-b / 2 / a).toFixed(5) + x2.toFixed(5)+'i')
       } else {
       x1 = Math.sqrt(4 * a * c - b * b) / 2 / a
-      x2 = Math.sqrt(4 * a * c - b * b) / 2 / a
-      console.log('x1=' + (-b / 2 / a).toFixed(5) + '+' + x1.toFixed(5) + 'i;x2=' + (-b / 2 / a).toFixed(5) + '+' + x2.toFixed(5)+'i')
+      x2 = -Math.sqrt(4 * a * c - b * b) / 2 / a
+      console.log('x1=' + (-b / 2 / a).toFixed(5) + '+' + x1.toFixed(5) + 'i;x2=' + (-b / 2 / a).toFixed(5) + x2.toFixed(5)+'i')
       }
     }
   </script>

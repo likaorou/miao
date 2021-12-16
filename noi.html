@@ -432,73 +432,318 @@
     console.log((y/n).toFixed(2))
   </script>
   <script id="ch0105/02">
-
+    var n = 1
+    var sum = 0
+    while (n <= 12) {
+      sum = sum + Number(prompt(n))
+      n = n + 1
+    }
+    console.log('$' + (sum / 12).toFixed(2))
   </script>
   <script id="ch0105/03">
-
+    var n = Number(prompt('n'))
+    var data = 0
+    var sum = 0
+    while (data < n) {
+      data = data + 1
+      sum = sum + Number(prompt(data))
+    }
+    console.log((sum / n).toFixed(4))
   </script>
   <script id="ch0105/04">
-
+    var n = Number(prompt('n'))
+    var data = 0
+    var sum = 0
+    while (data < n) {
+      data = data + 1
+      sum = sum + Number(prompt(data))
+    }
+    console.log(sum + ' ' + (sum / n).toFixed(5))
   </script>
   <script id="ch0105/05">
-
+    var n = Number(prompt('n'))
+    var data = 0
+    var max = 0
+    var stu = 0
+    while (data < n) {
+      data = data + 1
+      stu = Number(prompt(data))
+      if (max <= stu) {
+        max = stu
+      }
+    }
+    console.log(max)
   </script>
   <script id="ch0105/06">
-
+    var n = Number(prompt('n'))
+    var data = 1
+    var max = Number(prompt(data))
+    var min = max
+    while (data < n) {
+      data = data + 1
+      var c = Number(prompt(data))
+      if (c >= max){
+        max = c
+      }
+      if (c <= min) {
+        min = c
+      }
+    }
+    console.log(max - min)
   </script>
   <script id="ch0105/07">
-
+    var n = Number(prompt('n'))
+    var c = 0
+    var goldSum = 0
+    var silverSum = 0
+    var bronzeSum = 0
+    var sum = 0
+    while(c < n) {
+      c = c + 1
+      goldSum = goldSum + Number(prompt(c))
+      silverSum = silverSum + Number(prompt(c))
+      bronzeSum = bronzeSum + Number(prompt(c))
+      sum = goldSum + silverSum + bronzeSum
+    }
+    console.log(goldSum + ' ' + silverSum + ' ' + bronzeSum + ' ' + sum)
   </script>
   <script id="ch0105/08">
-
+    var n = Number(prompt('n'))
+    var c = 0
+    var sum = 0
+    while(c < n - 1) {
+      c = c + 1
+      sum = sum + Number(prompt(c))
+    }
+    var angle = (n - 2) * 180 - sum
+    console.log(angle)
   </script>
   <script id="ch0105/09">
-
+    var m = Number(prompt('m'))
+    var n = Number(prompt('n'))
+    var sum = 0
+    while(m <= n) {
+      if (m % 2 == 1) {
+        sum = sum + m
+      }
+      m = m + 1
+    }
+    console.log(sum)
   </script>
   <script id="ch0105/10">
-
+    var m = Number(prompt('m'))
+    var n = Number(prompt('n'))
+    var sum = 0
+    while(m <= n) {
+      if (m % 17 == 0) {
+        sum = sum + m
+      }
+      m = m + 1
+    }
+    console.log(sum)
   </script>
   <script id="ch0105/11">
-
+    var k = Number(prompt('k'))
+    var n = 0
+    var sumOne = 0
+    var sumFive = 0
+    var sumTen = 0
+    while(n < k) {
+      n = n + 1
+      var data = Number(prompt(n))
+      if (data / 1 == 1) {
+        sumOne = sumOne + 1
+      }
+      if (data / 5 == 1) {
+        sumFive = sumFive + 1
+      }
+      if (data / 10 == 1) {
+        sumTen = sumTen + 1
+      }
+    }
+    console.log(sumOne + ' ' + sumFive + ' ' + sumTen)
   </script>
   <script id="ch0105/12">
-
+    var n = Number(prompt('n'))
+    var m = Number(prompt('m'))
+    var l = 0
+    var sum = 0
+    while(l < n) {
+      l = l + 1
+      var data = Number(prompt(l))
+      if (data == m) {
+        sum = sum + 1
+      }
+    }
+    console.log(sum)
   </script>
   <script id="ch0105/13">
-
+    var a = Number(prompt('a'))
+    var n = Number(prompt('n'))
+    var i = 1
+    var mul = 1
+    while (i <= n && n > 0) {
+      mul = mul * a
+      i = i + 1
+    }
+    console.log(mul)
   </script>
   <script id="ch0105/14">
-
+    var x = Number(prompt('x'))
+    var n = Number(prompt('n'))
+    var i = 1
+    while (i <= n && n > 0) {
+      x = x + 0.001 * x
+      i = i + 1
+    }
+    console.log(x.toFixed(4))
   </script>
   <script id="ch0105/15">
-
+    var R = Number(prompt('R'))
+    var M = Number(prompt('M'))
+    var Y = Number(prompt("Y"))
+    var i = 1
+    while (i <= Y && Y > 0) {
+      M = M + R / 100 * M
+      i = i + 1
+    }
+    console.log(Math.trunc(M))
   </script>
   <script id="ch0105/16">
-
+    var N = Number(prompt('N'))
+    var K = Number(prompt('K'))
+    var cost = 200
+    var M = 0
+    for (var i = 1; N * i < cost; i++) {
+      M = i + 1
+      cost = cost * (1 + K / 100)
+    }
+    if (M > 20) {
+      console.log("Impossible")
+    } else{
+      console.log(M)
+    }
   </script>
   <script id="ch0105/17">
-
+    var k = Number(prompt('k'))
+    var k1 = 1
+    var k2 = 1
+    for (var i = 3; i <= k; i++) {
+      var count = k2
+      k2 = k2 + k1
+      k1 = count
+    }
+    console.log(k2)
   </script>
   <script id="ch0105/18">
-
+    var n = Number(prompt('n'))
+    var sumJi = Number(prompt('1'))
+    var sumSucJi = Number(prompt('2'))
+    var rate = sumSucJi / sumJi
+    for (var i = 0; i < n - 1; i++) {
+      var sum = Number(prompt('1'))
+      var sumSuc = Number(prompt('2'))
+      var count = sumSuc / sum
+      if (count - rate > 0.05) {
+        console.log('better')
+      }
+      if (count - rate < -0.05) {
+        console.log('worse')
+      }
+      if (count - rate > -0.05 && count - rate < 0.05) {
+        console.log('same')
+      }
+    }
   </script>
   <script id="ch0105/19">
-
+    var n = Number(prompt('n'))
+    var time = 0
+    for (var i = 0; i < n; i++) {
+      var x = Number(prompt("x"))
+      var y = Number(prompt('y'))
+      var people = Number(prompt('people'))
+      time = time + Math.sqrt(x * x + y * y) / 50 * 2 + people * (1 + 0.5)
+    }
+    console.log(Math.ceil(time))
   </script>
   <script id="ch0105/20">
-  
+    var h = Number(prompt('h'))
+    var h10 = 0
+    var sum = h
+    for(var i = 1; i < 10; i++) {
+      h = h * 0.5
+      sum = sum + 2 * h
+      if (i == 9) {
+        h10 = h
+      }
+    }
+    console.log(sum)
+    console.log(h10 * 0.5)
   </script>
   <script id="ch0105/21">
-
+    var N  = Number(prompt('N'))
+    var n = 0
+    if (N == 1) {
+      console.log('End')
+    } else {
+      while (N !== 1) {
+        if (N % 2 == 1) {
+          n = N
+          N = N * 3 + 1
+          console.log(n + '*3+1=' + N)
+        }
+        if (N % 2 == 0) {
+          n = N
+          N = N / 2
+          console.log(n + '/2=' + N)
+        }
+        if (N == 1) {
+          console.log('End')
+        }
+      }
+    }
   </script>
   <script id="ch0105/22">
-
+    var save = 0
+    var money = 300
+    var sumM = 0
+    var oweM = 0 
+    for (var i = 0; i < 12; i++) {
+      save = money - Number(prompt(i+1)) + save
+      if (save < 0) {  
+        oweM = -(i+1)
+      }
+      if (save >= 100) {
+        sumM = sumM + Math.trunc(save / 100) * 100
+        save = save - Math.trunc(save / 100) * 100
+      }
+    }
+    
+    if (oweM < 0) {
+      console.log(oweM)
+    } else {
+      console.log(sumM * 1.2 + save)
+    }
   </script>
-  <script id="ch0105/23">
-
+  <script id="ch0105/23">    
+    var m = Number(prompt('m'))
+    var n = Number(prompt('n'))
+    var sum = 0
+    var e = 0
+    for (var i = 0; i < n; i++) {
+      e = Number(prompt(i+1))
+      if(m >= e) {
+        m = m - e
+      } else (
+        sum = sum + 1
+      )
+    }
   </script>
   <script id="ch0105/24">
-
+    var n = Number(prompt('n'))
+    for (var i = 0; i < 4; i++) {
+      
+    }
   </script>
   <script id="ch0105/25">
 

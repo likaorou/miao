@@ -876,32 +876,20 @@
   <script id="ch0105/31"> // 没完成
     var N = Number(prompt('N'))
     var M = Number(prompt("M"))
-    var light = 0
-    var count = 0
-    /*
-    var N = Number(prompt('N'))
-    var M = Number(prompt("M"))
-    var light = 0
-    var count = 0
-    for (var people = 1; people <= M; people++) {
-      if (light == 0) {
-        light = light + 1
-      } else {
-        light = light - 1
-      }
-      console.log(light)
+    var light = ''
+    for (var i = 0; i < N; i++) {
+      light = light + 1
     }
-    */
-    for (var i = 1; i <= N; i++) {
-      if (i % 2 == 0) {
-        if (light == 0) {
-          light = light + 1
-        } else {
-          light = light - 1
+    for (var i = 0; i < N; i++) {
+      var count = Number(light) % 10
+      
+      for (var c = 0; c < m; c++) {
+        if (count % c == 0) {
+          
         }
       }
-      console.log(light)
     }
+    console.log(light)
 
      
   </script>
@@ -1100,15 +1088,28 @@
       }
     }
   </script>
-  <script id="ch0105/45"> //未完成
+  <script id="ch0105/45"> 
     var n = Number(prompt('n'))
     var day = 1
+    var daySum = 0
     var gold = 1
+    var goldSum = 0
     for (var i = 0; i < n; i++) {
-      if(i <= day) {
-        gold = gold
+      var count = 0
+      daySum = daySum + day
+      while (i < daySum) {
+      goldSum = goldSum + gold
+      i = i + 1
+      count = count + 1
+      }
+      
+      i = i - 1
+      if (count == day) {
+        day = day + 1
+        gold = gold + 1
       }
     }
+    console.log(goldSum)
   </script>
 </body>
 </html>

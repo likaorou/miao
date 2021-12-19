@@ -877,20 +877,50 @@
     var N = Number(prompt('N'))
     var M = Number(prompt("M"))
     var light = ''
+    var s1 = ''
+    var count = 0
+    var answ = ''
+    
     for (var i = 0; i < N; i++) {
       light = light + 1
+      count = count +1
     }
-    for (var i = 0; i < N; i++) {
-      var count = Number(light) % 10
+    light = Number(light)
+    for (var i = 0; i < M; i++) {
       
-      for (var c = 0; c < m; c++) {
-        if (count % c == 0) {
+      for (var c = 0; c < count; c++){
+        var s = ''
+        while (light >= 10) {
+          if (light % 10 == 0) {
+            s = s + light
+            light = 0
           
+          } else {
+            s = s + (light % 10)
+            light = (light - (light % 10)) / 10
+           
+          }
         }
+        
+        if ((c + 1) % (i + 1) == 0) {
+          if (light == 1) {
+            light = light - 1
+            s1 = s1 + light
+          } else if (light == 0) {
+            light = light + 1
+            s1 = s1 + light
+          }
+        } else {
+          s1 = s1 + light
+        }
+        light = Number(s)
       }
+      light = Number(s1)
+      answ = s1
+      s1 = ''
     }
-    console.log(light)
 
+    console.log(answ)
      
   </script>
   <script id="ch0105/32">
@@ -956,14 +986,37 @@
     } 
     console.log(sum.toFixed(2))
   </script>
-  <script id="ch0105/37"> //没完成
+  <script id="ch0105/37"> //完成
     var M = Number(prompt('M'))
     var N = Number(prompt('N'))
     var X = Number(prompt('X'))
     var m = 0
-
+    var xPower = N
+    var countX = X - Math.ceil(M / N)
+    for (var i = 0; i < M; i++) {
+      if(i+1 == N) {
+        N = N + 1
+      }
+    }
+    while(countX > 0) {
+      var countD = 0
+      for (var i = 0; i < M; i++) {
+        countD = countD + 1
+        if (countD % N == 0) {
+          N = N + 1
+        }
+      }
+      countX = countX - Math.ceil(M / N)
+    }
+    console.log(N)
   </script>
   <script id="ch0105/38"> //没完成
+    var n = Number(prompt('n'))
+    for (var i = 0; i <= n; i++) {
+      var i = Number(prompt('c'))
+      
+    }
+
   </script>
   <script id="ch0105/39">
     var n = Number(prompt('n'))
@@ -1034,15 +1087,15 @@
     for (var h = 0; h < high; h++) {
       for (var w = 0; w < wide; w++) {
         if (full == 1) {
-          line = line + mark + ' '
+          line = line + mark
         }
         if (full == 0) {
           if (h == 0 || h == high - 1) {
-            line = line + mark + ' '
+            line = line + mark
           } else if(w == 0 || w == wide - 1) {
-            line = line + mark + ' '
+            line = line + mark
           } else {
-            line = line + ' ' + ' '
+            line = line + ' '
           }          
         }
       }

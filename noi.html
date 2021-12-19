@@ -677,7 +677,7 @@
         h10 = h
       }
     }
-    console.log(sum + ' ' + h10 * 0.5)
+    console.log(sum.toFixed(4) + ' ' + (h10 * 0.5).toFixed(7))
   </script>
   <script id="ch0105/21">
     var N  = Number(prompt('N'))
@@ -1002,6 +1002,7 @@
         }
       }
     }
+    console.log(sum)
   </script>
   <script id="ch0105/41">
     var L = Number(prompt('L'))
@@ -1033,15 +1034,15 @@
     for (var h = 0; h < high; h++) {
       for (var w = 0; w < wide; w++) {
         if (full == 1) {
-          line = line + mark
+          line = line + mark + ' '
         }
         if (full == 0) {
           if (h == 0 || h == high - 1) {
-            line = line + mark
+            line = line + mark + ' '
           } else if(w == 0 || w == wide - 1) {
-            line = line + mark
+            line = line + mark + ' '
           } else {
-            line = line + ' '
+            line = line + ' ' + ' '
           }          
         }
       }

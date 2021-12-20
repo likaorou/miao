@@ -873,55 +873,28 @@
       console.log('NO')
     }
   </script>
-  <script id="ch0105/31"> // 没完成
+  <script id="ch0105/31"> // 完成
     var N = Number(prompt('N'))
     var M = Number(prompt("M"))
-    var light = ''
-    var s1 = ''
-    var count = 0
-    var answ = ''
-    
-    for (var i = 0; i < N; i++) {
-      light = light + 1
-      count = count +1
-    }
-    light = Number(light)
-    for (var i = 0; i < M; i++) {
-      
-      for (var c = 0; c < count; c++){
-        var s = ''
-        while (light >= 10) {
-          if (light % 10 == 0) {
-            s = s + light
-            light = 0
-          
-          } else {
-            s = s + (light % 10)
-            light = (light - (light % 10)) / 10
-           
-          }
+    var isFirst = true
+    var lights = ''
+    for (var i = 1 ; i <= N; i++) {
+      var light = true
+      for (var c = 1; c <= M && c <= N; c++) {
+        if (i % c == 0) {
+          light = !light
         }
-        
-        if ((c + 1) % (i + 1) == 0) {
-          if (light == 1) {
-            light = light - 1
-            s1 = s1 + light
-          } else if (light == 0) {
-            light = light + 1
-            s1 = s1 + light
-          }
-        } else {
-          s1 = s1 + light
-        }
-        light = Number(s)
       }
-      light = Number(s1)
-      answ = s1
-      s1 = ''
+      if (!light) {
+        if(isFirst) {
+          lights += i
+        } else {
+          lights += ',' + i
+        }
+        isFirst = false
+      }
     }
-
-    console.log(answ)
-     
+    console.log(lights)
   </script>
   <script id="ch0105/32">
     var n = Number(prompt('n'))
@@ -1010,13 +983,23 @@
     }
     console.log(N)
   </script>
-  <script id="ch0105/38"> //没完成
+  <script id="ch0105/38"> //完成
     var n = Number(prompt('n'))
-    for (var i = 0; i <= n; i++) {
-      var i = Number(prompt('c'))
-      
+    var count = ''
+    var x = false
+    for (var i = n; i >= 0; i--) {
+      var c = Number(prompt('c'))
+      if ( n == 0) {
+        console.log(0)
+        x = true
+      } else if (i !== 0){
+        //console.log(i * c)
+        count = count + i * c + ' '
+      }
     }
-
+    if (!x) {
+      console.log(count)
+    }
   </script>
   <script id="ch0105/39">
     var n = Number(prompt('n'))
@@ -1085,23 +1068,21 @@
     var full = Number(prompt('full'))
     var line = ''
     for (var h = 0; h < high; h++) {
-      var line = ''
+      //var line = ''
       for (var w = 0; w < wide; w++) {
         if (full == 1) {
           line = line + mark
-        }
-        if (full == 0) {
-          if (h == 0 || h == high - 1) {
-            line = line + mark
-          } else if(w == 0 || w == wide - 1) {
-            line = line + mark
-          } else {
-            line = line + ' '
-          }          
+        } else if (w == 0 || w == wide - 1 || h == 0 || h == high - 1) {
+          line += mark
+        } else {
+          line += ' '
         }
       }
-      console.log(line)
+      if (h !== high - 1) {
+        line += '\n'
+      }
     }
+    console.log(line)
   </script>
   <script id="ch0105/43"> //完成
     var n = Number(prompt('n'))

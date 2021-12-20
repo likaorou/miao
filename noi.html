@@ -1085,6 +1085,7 @@
     var full = Number(prompt('full'))
     var line = ''
     for (var h = 0; h < high; h++) {
+      var line = ''
       for (var w = 0; w < wide; w++) {
         if (full == 1) {
           line = line + mark
@@ -1099,9 +1100,8 @@
           }          
         }
       }
-      line = line + '\n'
+      console.log(line)
     }
-    console.log(line)
   </script>
   <script id="ch0105/43"> //完成
     var n = Number(prompt('n'))

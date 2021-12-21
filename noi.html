@@ -994,12 +994,11 @@
           if (n == 0) {
             console.log(0)
             x = true
-          } else if (i !== 0) {
+          } else if (i !== 0 && i == n) {
             //console.log(i * c)
-            if(i == 1){
               count = count + i * c
-            }else {
-              count = count + i * c + ' '
+            } else {
+              count = ' '+count + i * c
             } 
           }
         }

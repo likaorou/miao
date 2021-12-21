@@ -1170,22 +1170,21 @@
     console.log(goldSum)
   </script>
   <script id="narcissistic">
-    function isNarcissistic (n) {
-      let sum = 0
-      let count = n
+    let n = Number(prompt('n'))
+    let sum = 0
+    let count = n
+    for (let i = 1; i <= n; i++){
       while (count > 0) {
         sum = sum + (count % 10) * (count % 10) * (count % 10)
         count = (count - (count % 10)) / 10
       }
-      if (sum == n) {
-        return 'YES'
-      } else {
-        return 'NO'
-      }
     }
-    isNarcissistic(153)
-    isNarcissistic(122)
-    isNarcissistic(370)
+    if (sum == n) {
+      console.log('YES')
+    } else {
+      console.log('NO')
+    }
+    
   </script>
   <script id="narcissistics">
     function narcissistics () {
@@ -1204,62 +1203,61 @@
     narcissistics()
   </script>
   <script id="palindrom">
-    function palindrom (n) {
-      let palindrom = 0
-      let pali = n
-      while (pali > 0) {
-        palindrom += (pali % 10)
-        pali = (pali - (pali % 10)) / 10
-        palindrom *= 10
-      }
-      if (palindrom / 10 == n) {
-        return 'YES'
-      } else {
-        return 'NO'
-      }
+    let n = Number(prompt('n'))
+    let palindrom = 0
+    let pali = n
+    while (pali > 0) {
+      palindrom += (pali % 10)
+      pali = (pali - (pali % 10)) / 10
+      palindrom *= 10
     }
-    palindrom(12321)
-    palindrom(112233)
-    palindrom(1125211)
+    
+    if (palindrom / 10 == n) {
+      console.log('YES')
+    } else {
+      console.log('NO') 
+    }
+    
+  
   </script>
   <script id="weekday"> //为什么最后不加1
-    function weekday (year,month) {
-      let leapYear = false
-      let day = 0
-      let week = 0
-      for (let i = 1; i <= year - 1; i++) {
-        if (i % 400 == 0) {
-          day = day + 366
-        } else if (i % 4 == 0) {
-          day = day + 366
-        } else {
-          day = day + 365
-        }
+    let year = Number(prompt('year'))
+    let month = Number(prompt('month'))
+    
+    let leapYear = false
+    let day = 0
+    let week = 0
+    for (let i = 1; i <= year - 1; i++) {
+      if (i % 400 == 0) {
+        day = day + 366
+      } else if (i % 4 == 0) {
+        day = day + 366
+      } else {
+        day = day + 365
       }
-      if (year % 400 == 0) {
-        leapYear = true
-      } else if (year % 4 == 0) {
-        leapYear = true
-      } 
-      for (let i = 1; i < month; i++) {
-        if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) {
-          day = day + 31
-        } else if (leapYear && i == 2) {
-          day = day + 29
-        } else if (!leapYear && i == 2) {
-          day = day + 28
-        } else {
-          day = day + 30
-        }
-      }
-      week = (day) % 7
-      return week
     }
-    weekday(2018,6)
-    weekday(2019,6)
+    if (year % 400 == 0) {
+      leapYear = true
+    } else if (year % 4 == 0) {
+      leapYear = true
+    } 
+    for (let i = 1; i < month; i++) {
+      if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) {
+        day = day + 31
+      } else if (leapYear && i == 2) {
+        day = day + 29
+      } else if (!leapYear && i == 2) {
+        day = day + 28
+      } else {
+        day = day + 30
+      }
+    }
+    week = (day) % 7
+    console.log(week) 
+    
   </script>
   <script id="complete-number">
-    function completeNumber (n) {
+    let n = Number(prompt('n'))
       let sum = 0
       for (let i = 1; i <= n / 2; i++) {
         if (n % i == 0) {
@@ -1267,13 +1265,11 @@
         } 
       }
       if (sum == n) {
-        return 'YES'
+        console.log('YES')
       } else {
-        return 'NO'
+        console.log('NO')
       }      
-    }
-    completeNumber(6)
-    completeNumber(7)
+    
   </script>
   <script id="complete-numbers">
     function completeNumbers () {
@@ -1294,21 +1290,22 @@
     completeNumbers()
   </script>
   <script id="prime">
-    function prime (n) {
-      for (let i = 2; i * i <= n; i++) {
-        if (n % i == 0) {
-          return 'NO'
-        }
-      }
-      if (n == 1) {
-        return 'NO'
-      } else {
-        return 'YES'
+    let n = Number(prompt('prime'))
+    let isPrime = true
+    for (let i = 2; i * i <= n; i++) {
+      if (n % i == 0) {
+        console.log('NO') 
+        isPrime = false
+        break
       }
     }
-    prime(7)
-    prime(1)
-    prime(2)
+    if (n == 1) {
+      console.log('NO') 
+    } else if (isPrime) {
+      console.log('YES') 
+    }
+    
+   
   </script>
   <script id="primes">
     function primes () {
@@ -1330,8 +1327,8 @@
     primes()
   </script>
   <script id="itob">
-    function itob (n) {
-      let str = ''
+    let n = Number(prompt('n'))
+    let str = ''
       /*for (var i = 1; n >= 10; i++) {
         str = str + n % 10
         n = (n - (n % 10)) / 10
@@ -1339,10 +1336,7 @@
           str += n
         }
       }*/
-      return str + n
-    }
-    itob(123)
-    itob(-123)
+    console.log(str + n)
   </script>
   <script id="lcf&lcm">
     function lcflcm (a,b) {

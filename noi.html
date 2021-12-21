@@ -1183,6 +1183,7 @@
         return 'NO'
       }
     }
+    isNarcissistic(153)
   </script>
   <script id="narcissistics">
     function narcissistics () {
@@ -1198,6 +1199,7 @@
         }
       }
     }
+    narcissistics()
   </script>
   <script id="palindrom">
     function palindrom (n) {
@@ -1214,7 +1216,8 @@
         return 'NO'
       }
     }
-    
+    palindrom(112233)
+    palindrom(1125211)
   </script>
   <script id="weekday"> //为什么最后不加1
     function weekday (year,month) {
@@ -1249,6 +1252,8 @@
       week = (day) % 7
       return week
     }
+    weekday(2018,6)
+    weekday(2019,6)
   </script>
   <script id="complete-number">
     function completeNumber (n) {
@@ -1264,6 +1269,8 @@
         return 'NO'
       }      
     }
+    completeNumber(6)
+    completeNumber(7)
   </script>
   <script id="complete-numbers">
     function completeNumbers () {
@@ -1281,6 +1288,7 @@
         n += 1
       }
     }
+    completeNumbers()
   </script>
   <script id="prime">
     function prime (n) {
@@ -1295,6 +1303,9 @@
         return 'YES'
       }
     }
+    prime(7)
+    prime(1)
+    prime(2)
   </script>
   <script id="primes">
     function primes () {
@@ -1313,6 +1324,7 @@
         n += 1
       }
     }
+    primes()
   </script>
   <script id="itob">
     function itob (n) {
@@ -1326,6 +1338,8 @@
       }*/
       return str + n
     }
+    itob(123)
+    itob(-123)
   </script>
   <script id="lcf&lcm">
     function lcflcm (a,b) {
@@ -1371,7 +1385,7 @@
       }
       console.log(lcf, lcm) 
     }
-    lcflcm(3,5)
+    lcflcm(12,9)
   </script>
   <script id="sqrt">
     var n = Number(prompt('n'))

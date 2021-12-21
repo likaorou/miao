@@ -987,16 +987,18 @@
       var s = Number(prompt('s'))
       while (s > 0) {
         var n = Number(prompt('n'))
-        var count = ' '
+        var count = ''
         var x = false
         for (var i = n; i >= 0; i--) {
           var c = Number(prompt('c'))
           if (n == 0) {
             console.log(0)
             x = true
-          } else if (i !== 0) {
+          } else if (i !== 0 && i == 1) {
             //console.log(i * c)
-            count = i * c + count
+            count = count + i * c
+          } else {
+            count = count + i * c + ' '
           }
         }
         if (!x) {

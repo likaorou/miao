@@ -984,7 +984,27 @@
     console.log(N)
   </script>
   <script id="ch0105/38"> //完成
-    var n = Number(prompt('n'))
+    var s = Number(prompt('s'))
+    while (s > 0) {
+      var n = Number(prompt('n'))
+      var count = ''
+      var x = false
+      for (var i = n; i >= 0; i--) {
+        var c = Number(prompt('c'))
+        if (n == 0) {
+          console.log(0)
+          x = true
+        } else if (i !== 0) {
+          //console.log(i * c)
+          count = count + i * c + ' '
+        }
+      }
+      if (!x) {
+        console.log(count)
+      }
+      s -= 1
+    }
+    /*var n = Number(prompt('n'))
     var count = ''
     var x = false
     for (var i = n; i >= 0; i--) {
@@ -999,7 +1019,7 @@
     }
     if (!x) {
       console.log(count)
-    }
+    }*/
   </script>
   <script id="ch0105/39">
     var n = Number(prompt('n'))
@@ -1261,8 +1281,10 @@
         break
       }
     }
-    if (isPrime) {
+    if (isPrime && n > 1) {
       console.log('YES')
+    } else {
+      console.log('NO')
     }
   </script>
   <script id="primes">

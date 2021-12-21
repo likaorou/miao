@@ -987,7 +987,7 @@
       var s = Number(prompt('s'))
       while (s > 0) {
         var n = Number(prompt('n'))
-        var count = ''
+        var count = ' '
         var x = false
         for (var i = n; i >= 0; i--) {
           var c = Number(prompt('c'))
@@ -996,7 +996,7 @@
             x = true
           } else if (i !== 0) {
             //console.log(i * c)
-            count = count + i * c
+            count = i * c + count
           }
         }
         if (!x) {

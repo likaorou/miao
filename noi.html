@@ -994,13 +994,13 @@
           if (n == 0) {
             console.log(0)
             x = true
-          } else if (i !== 0 && i == n) {
+          } else if (i !== 0) {
             //console.log(i * c)
+            if (i == n) {
               count = count + i * c
-          } else {
-              count = ' '+count + i * c
-          } 
-          
+            } else
+            count = ' ' + count + i * c
+          }
         }
         if (!x) {
           console.log(count)

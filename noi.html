@@ -1253,10 +1253,10 @@
         //取出右第一位
         var a = Math.trunc(n / Math.pow(10, i - 1)) % 10
         if(a !== b) {
-          return false
+          return 'NO'
         }
       }
-      return true
+      return 'YES'
     }
     var n = Number(prompt('n'))
     console.log(isPalindrom(n))
@@ -1371,23 +1371,17 @@
   <script id="itob">
     let n = Number(prompt('n'))
     let str = ''
-    for (var i = 1; n >= 10; i++) {
-      str = str + n % 10
-      n = (n - (n % 10)) / 10
-      if (n < 10) {
-        str += n
-      }
+    if(n < 0) {
+      var sign = '-'
+      n = -n
+    } else {
+      var sign = ''
     }
-    n = Number(str)
-    str = ''
-    for (var i = 1; n >= 10; i++) {
-      str = str + n % 10
+    for (var i = 1; n > 0; i++) {
+      str = (n % 10) + str
       n = (n - (n % 10)) / 10
-      if (n < 10) {
-        str += n
-      }
     }
-    console.log(str)
+    console.log(sign + str)
   </script>
   <script id="lcf&lcm">//欧几里得
     function lcflcm (a,b) {

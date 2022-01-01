@@ -1170,54 +1170,96 @@
     console.log(goldSum)
   </script>
   <script id="narcissistic">
-    let n = Number(prompt('n'))
-    let sum = 0
-    let count = n
-    for (let i = 1; i <= n; i++){
-      while (count > 0) {
-        sum = sum + (count % 10) * (count % 10) * (count % 10)
-        count = (count - (count % 10)) / 10
+    function digitWidth (m) {
+      var width = 0
+      do {
+        width++
+        var ge = m % 10
+        m = (m - ge) / 10
+      } while (m > 0)
+      return width
+    }
+    function power(x,n) {
+      var result = 1
+      for (var i = 0; i < n; i++) {
+        result *= x
       }
+      return result
     }
-    if (sum == n) {
-      console.log('YES')
-    } else {
-      console.log('NO')
+    function isNarcissistic (n) {
+      var w = digitWidth(n)
+      var m = n
+      var sum = 0
+      while (m > 0) {
+        var ge = m % 10
+        sum += power(ge, w)
+        m = (m - ge) / 10
+      }
+      return sum == n
     }
-    
+    let n = Number(prompt('n'))
+    console.log(isNarcissistic(n) ? 'YES' : 'NO' )
   </script>
   <script id="narcissistics">
-    function narcissistics () {
-      for (let i = 100; i <= 10000; i++) {
-        let sum = 0
-        let n = i
-        while (n > 0) {
-          sum = sum + (n % 10) * (n % 10) * (n % 10)
-          n = (n - (n % 10)) / 10
-        }
-        if (sum == i) {
-          console.log(i)
-        }
+    function digitWidth (m) {
+      var width = 0
+      do {
+        width++
+        var ge = m % 10
+        m = (m - ge) / 10
+      } while (m > 0)
+      return width
+    }
+    function power(x,n) {
+      var result = 1
+      for (var i = 0; i < n; i++) {
+        result *= x
+      }
+      return result
+    }
+    function isNarcissistic (n) {
+      var w = digitWidth(n)
+      var m = n
+      var sum = 0
+      while (m > 0) {
+        var ge = m % 10
+        sum += power(ge, w)
+        m = (m - ge) / 10
+      }
+      return sum == n
+    }
+    for (i = 1; i <= 10000; i++) {
+      if(isNarcissistic(i)) {
+        console.log(i)
       }
     }
-    narcissistics()
   </script>
   <script id="palindrom">
-    let n = Number(prompt('n'))
-    let palindrom = 0
-    let pali = n
-    while (pali > 0) {
-      palindrom += (pali % 10)
-      pali = (pali - (pali % 10)) / 10
-      palindrom *= 10
+    function digitWidth (m) {
+      var width = 0
+      do {
+        width++
+        var ge = m % 10
+        m = (m - ge) / 10
+      } while (m > 0)
+      return width
     }
-    
-    if (palindrom / 10 == n) {
-      console.log('YES')
-    } else {
-      console.log('NO') 
+    function isPalindrom(n) {
+      var width = digitWidth(n)
+      for(var i = 0; i < width / 2; i++) {
+        //取出左第一位
+        var j = width - i + 1
+        var b = Math.trunc(n / Math.pow(10, j - 1)) % 10
+        //取出右第一位
+        var a = Math.trunc(n / Math.pow(10, i - 1)) % 10
+        if(a !== b) {
+          return false
+        }
+      }
+      return true
     }
-    
+    var n = Number(prompt('n'))
+    console.log(isPalindrom(n))
   
   </script>
   <script id="weekday"> //为什么最后不加1
@@ -1329,16 +1371,25 @@
   <script id="itob">
     let n = Number(prompt('n'))
     let str = ''
-      /*for (var i = 1; n >= 10; i++) {
-        str = str + n % 10
-        n = (n - (n % 10)) / 10
-        if (n < 10) {
-          str += n
-        }
-      }*/
-    console.log(str + n)
+    for (var i = 1; n >= 10; i++) {
+      str = str + n % 10
+      n = (n - (n % 10)) / 10
+      if (n < 10) {
+        str += n
+      }
+    }
+    n = Number(str)
+    str = ''
+    for (var i = 1; n >= 10; i++) {
+      str = str + n % 10
+      n = (n - (n % 10)) / 10
+      if (n < 10) {
+        str += n
+      }
+    }
+    console.log(str)
   </script>
-  <script id="lcf&lcm">
+  <script id="lcf&lcm">//欧几里得
     function lcflcm (a,b) {
       let lcf = 0
       let lcm = 0
@@ -1384,7 +1435,7 @@
     }
     lcflcm(12,9)
   </script>
-  <script id="sqrt">
+  <script id="sqrt"> //牛顿法 二分法
     var n = Number(prompt('n'))
     var i = 0
     while (i * i < n) {
@@ -1398,6 +1449,9 @@
       }
       console.log(i.toFixed(3))
     }
+  </script>
+  <script>
+   
   </script>
 </body>
 </html>

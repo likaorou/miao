@@ -73,21 +73,61 @@ var likaorou = {
     return result
   },
   flattenDeep: function (array) {
+    let result = []
+    let count = []
+    let len = 0
     for (let i = 0; i < array.length; i++) {
       if (Array.isArray(array[i])) {
-        this.flattenDeep(array[i])
+        len = array[i].length
+        count = this.flattenDeep(array[i])
       } else {
-        //result.push(array[i])
-        return array[i]
+        result.push(array[i])
+      }
+      if (result.length + len <= array.length + len) {
+        let c = result.length
+        for (let i = 0; i < count.length; i++) {
+          result[i + c] = count[i]
+        }
       }
     }
-    //return result
+    return result
   },
-  x: function () { },
-  x: function () { },
-  x: function () { },
-  x: function () { },
-  x: function () { },
+  x: function (array, depth = 1) {
+  },
+  fromPairs: function (pairs) {
+    let obj = {}
+    for (let i = 0; i < pairs.length; i++) {
+      if (pairs[i].length !== 0) {
+        obj[pairs[i][0]] = pairs[i][1]
+      }
+    }
+    return obj
+  },
+  head: function (array) {
+    if (array.length !== 0) {
+      return array[0]
+    } else {
+      return undefined
+    }
+  },
+  indexOf: function (array, value, fromIndex = 0) {
+    for (let i = fromIndex; i < array.length; i++) {
+      if (array[i] == value) {
+        return i
+      }
+    }
+  },
+  initial: function (array) {
+    if (array.length == 0) {
+      return array
+    } else {
+      let result = []
+      for (let i = 0; i < array.length - 1; i++) {
+        result.push(array[i])
+      }
+      return result
+    }
+  },
   x: function () { },
   x: function () { },
   x: function () { },

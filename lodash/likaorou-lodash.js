@@ -6,10 +6,11 @@ var likaorou = {
       return result
     } else {
       let count = []
-      for (let i = 0; i <= array.length; i++) {
+      for (let i = 0; i < array.length; i++) {
         if (count.length == size) {
           result.push(count)
           count = []
+          i--
         } else {
           count.push(array[i])
         }
@@ -23,9 +24,7 @@ var likaorou = {
   compact: function (array) {
     let result = []
     for (let i = 0; i < array.length; i++) {
-      if (array[i] == 0 || array[i] == undefined || array[i] == '' || array[i] == false || array[i] == null || array[i] !== array[i]) {
-        continue
-      } else {
+      if (array[i]) {
         result.push(array[i])
       }
     }
@@ -48,20 +47,49 @@ var likaorou = {
   },
   dropRightWhile: function () { },
   dropWhile: function () { },
-  fill: function () { },
+  fill: function (array, value, start = 0, end = array.length) {
+    for (let i = start; i < end; i++) {
+      array[i] = value
+    }
+    return array
+  },
   findIndex: function () { },
   findLastIndex: function () { },
-  flatten: function () { },
-  flattenDeep: function () { },
+  flatten: function (array) {
+    let result = []
+    for (let i = 0; i < array.length; i++) {
+      if (Array.isArray(array[i])) {
+        let len = array[i].length
+        let count = array[i]
+        for (let c = 0; c < len; c++) {
+          result.push(count[c])
+        }
+      } else {
+        result.push(array[i])
+      }
+    }
+    return result
+  },
+  flattenDeep: function (array) {
+    for (let i = 0; i < array.length; i++) {
+      if (Array.isArray(array[i])) {
+        this.flattenDeep(array[i])
+      } else {
+        //result.push(array[i])
+        return array[i]
+      }
+    }
+    //return result
+  },
   flattenDepth: function () { },
-  compact: function () { },
-  compact: function () { },
-  compact: function () { },
-  compact: function () { },
-  compact: function () { },
-  compact: function () { },
-  compact: function () { },
-  compact: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
 
 
 }

@@ -75,19 +75,17 @@ var likaorou = {
   flattenDeep: function (array) {
     let result = []
     let count = []
-    let len = 0
     for (let i = 0; i < array.length; i++) {
       if (Array.isArray(array[i])) {
-        len = array[i].length
         count = this.flattenDeep(array[i])
+        if (result.length <= array.length) {
+          let c = result.length
+          for (let i = 0; i < count.length; i++) {
+            result[i + c] = count[i]
+          }
+        }
       } else {
         result.push(array[i])
-      }
-      if (result.length + len <= array.length + len) {
-        let c = result.length
-        for (let i = 0; i < count.length; i++) {
-          result[i + c] = count[i]
-        }
       }
     }
     return result

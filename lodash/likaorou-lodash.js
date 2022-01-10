@@ -24,7 +24,9 @@ var likaorou = {
   compact: function (array) {
     let result = []
     for (let i = 0; i < array.length; i++) {
-      if (array[i]) {
+      if (array[i] == 0 || array[i] == undefined || array[i] == '' || array[i] == false || array[i] == null || array[i] !== array[i]) {
+        continue
+      } else {
         result.push(array[i])
       }
     }
@@ -45,16 +47,16 @@ var likaorou = {
     }
     return array = result
   },
-  dropRightWhile: function () { },
-  dropWhile: function () { },
+  x: function () { },
+  x: function () { },
   fill: function (array, value, start = 0, end = array.length) {
     for (let i = start; i < end; i++) {
       array[i] = value
     }
     return array
   },
-  findIndex: function () { },
-  findLastIndex: function () { },
+  x: function () { },
+  x: function () { },
   flatten: function (array) {
     let result = []
     for (let i = 0; i < array.length; i++) {
@@ -81,7 +83,6 @@ var likaorou = {
     }
     //return result
   },
-  flattenDepth: function () { },
   x: function () { },
   x: function () { },
   x: function () { },

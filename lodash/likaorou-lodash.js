@@ -72,7 +72,7 @@ var likaorou = {
     }
     return result
   },
-  flattenDeep: function (array) {
+  flattenDeep: function (array) { //递归，
     let result = []
     let count = []
     for (let i = 0; i < array.length; i++) {
@@ -126,9 +126,90 @@ var likaorou = {
       return result
     }
   },
+  join: function (array, separator = ',') {
+    let str = ''
+    for (let i = 0; i < array.length; i++) {
+      if (i == array.length - 1) {
+        str = str + array[i]
+      } else {
+        str = str + array[i] + separator
+      }
+    }
+    return str
+  },
+  last: function (array) {
+    return array[array.length - 1]
+  },
+  lastIndexOf: function (array, value, fromIndex = array.length - 1) {
+    for (let i = fromIndex; i >= 0; i--) {
+      if (value == array[i]) {
+        return i
+      }
+    }
+  },
+  reverse: function (array) {
+    let left = 0
+    let right = array.length - 1
+    while (left < right) {
+      let count = array[left] + array[right]
+      array[left] = count - array[left]
+      array[right] = count - array[left]
+      left++
+      right--
+    }
+    return array
+  },
+  uniq: function (array) {
+    let result = []
+    for (let i = 0; i < array.length; i++) {
+      let count = 0
+      for (let c = i; c >= 0; c--) {
+        if (array[i] == array[c]) {
+          count++
+        }
+      }
+      if (count <= 1) {
+        result.push(array[i])
+      }
+    }
+    return result
+  },
   x: function () { },
+  without: function (array, values) {
+    let count = []
+    let result = []
+    count.push(...arguments)
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] in count) {
+        continue
+      } else {
+        result.push(array[i])
+      }
+    }
+    return result
+  },
+  zip: function (arrays) {
+    let count = []
+    let result = []
+    count.push(...arguments)  //展开运算符是对每一个元素操作，不能所有元素一次操作
+    let min = count[0].length
+    for (i in count) {        //for in 遍历的数组是序列号，所以最好遍历对象
+      if (count[i].length < min) {
+        min = i.length
+      }
+    }
+    for (let i = 0; i < min; i++) {
+      let count1 = []
+      for (let c = 0; c < count.length; c++) {
+        count1.push(count[c][i])
+      }
+      result.push(count1)
+    }
+    return result
+  },
   x: function () { },
   x: function () { },
 
+  x: function () { },
 
 }

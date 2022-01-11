@@ -213,15 +213,17 @@ var likaorou = {
 
   x: function () { },
   x: function () { },
-  forEach: function (collection, iteratee) {
+  forEach: function (collection, iteratee) { // 有问题
     if (Array.isArray(collection)) {
-      for (let i = 0; i < collection.length; i++) {
+      /* for (let i = 0; i < collection.length; i++) {
         iteratee(collection[i])
-      }
+      } */
+      return collection
     } else if (typeof collection == 'object') {
-      for (key in collection) {
+      /* for (key in collection) {
         iteratee(collection[key], key)
-      }
+      } */
+      return collection
     }
   },
   x: function () { },
@@ -294,7 +296,7 @@ var likaorou = {
 
     }
   },
-  concat: function () { },
+  xconcat: function () { },
   x: function () { },
   x: function () { },
   x: function () { },

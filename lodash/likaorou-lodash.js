@@ -146,6 +146,7 @@ var likaorou = {
         return i
       }
     }
+    return -1
   },
   reverse: function (array) {
     let left = 0
@@ -211,5 +212,92 @@ var likaorou = {
   x: function () { },
 
   x: function () { },
+  x: function () { },
+  forEach: function (collection, iteratee) {
+    if (Array.isArray(collection)) {
+      for (let i = 0; i < collection.length; i++) {
+        iteratee(collection[i])
+      }
+    } else if (typeof collection == 'object') {
+      for (key in collection) {
+        iteratee(collection[key], key)
+      }
+    }
+  },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+  sample: function (collection) {
+    if (Array.isArray(collection)) {
+      let index = Math.floor(Math.random() * collection.length)
+      return collection[index]
+    } else if (typeof collection == 'object') {
+      let count = []
+      for (key in collection) {
+        count.push([key, collection[key]])
+      }
+      let index = Math.floor(Math.random() * count.length)
+      return count[index][1]
+    }
+  },
+  x: function () { },
+  size: function (collection) {
+    if (typeof collection == 'string' || Array.isArray(collection)) {
+      return collection.length
+    } else if (typeof collection == 'object') {
+      let count = []
+      for (key in collection) {  //...展开运算符的运用。
+        count.push(key)
+      }
+      return count.length
+    }
+  },
+  xceil: function (number, precision = 0) {
+
+  },
+  max: function (array) {
+    let max = array[0]
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] > max) {
+        max = array[i]
+      }
+    }
+    return max
+  },
+  sum: function (array) {
+    let result = 0
+    for (i in array) {
+      result += array[i]
+    }
+    return result
+  },
+  repeat: function (string = '', n = 1) {
+    if (n < 1) {
+      return ''
+    } else {
+      let result = ''
+      while (n > 0) {
+        result += string
+        n--
+        if (n == 0) {
+          return result
+        }
+      }
+    }
+  },
+  xrange: function (start = 0, end, step = 1) {
+    if (end < 0) {
+
+    }
+  },
+  concat: function () { },
+  x: function () { },
+  x: function () { },
+  x: function () { },
+
 
 }

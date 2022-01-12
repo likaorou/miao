@@ -246,7 +246,13 @@ var likaorou = {
       return count[index][1]
     }
   },
-  x: function () { },
+  isBoolean: function (value) {
+    if (value === true || value === false) {
+      return true
+    } else {
+      return false
+    }
+  },
   size: function (collection) {
     if (typeof collection == 'string' || Array.isArray(collection)) {
       return collection.length
@@ -258,8 +264,67 @@ var likaorou = {
       return count.length
     }
   },
-  xceil: function (number, precision = 0) {
+  xisNaN: function (value) {
 
+  },
+  isNumber: function (value) {
+    if (typeof value == 'number') {
+      return true
+    }
+    return false
+  },
+  toArray: function (value) {
+    if (Array.isArray(value)) {
+      return value
+    }
+    if (typeof value == 'object') {
+      let result = []
+      for (key in value) {
+        result.push(value[key])
+      }
+      return result
+    }
+    if (typeof value == 'string') {
+      let result = []
+      for (let i = 0; i < value.length; i++) {
+        result.push(value[i])
+      }
+      return result
+    }
+    return []
+  },
+  ceil: function (number, precision = 0) {
+    if (precision == 0) {
+      if (number % 1 !== 0) {
+        return number - number % 1 + 1
+      } else {
+        return number
+      }
+    }
+    if (precision > 0) {
+      if (number % 1 !== 0) {
+        let count = number % 1
+        if (count < (1 / 10 ** precision)) {
+          number = number + 1 / 10 ** precision
+          return number
+        } else if (count % (1 / 10 ** precision) == 0) {
+          return number
+        } else {
+          number = number - count
+          return count - count % (1 / 10 ** precision) + (1 / 10 ** precision) + number
+        }
+      } else {
+        return number
+      }
+    }
+    if (precision < 0) {
+      precision = -precision
+      if (number % (10 ** precision) !== 0) {
+        return number - number % (10 ** precision) + (10 ** precision)
+      } else {
+        return number
+      }
+    }
   },
   max: function (array) {
     let max = array[0]
@@ -291,12 +356,66 @@ var likaorou = {
       }
     }
   },
-  xrange: function (start = 0, end, step = 1) {
-    if (end < 0) {
+  range: function ({ start = 0, end, step = 1 }) {  //形参实参问题
+    let count = []
+    let result = []
+    count.push(...arguments)
+    if (count.length == 1) {
+      start = 0
+      end = count[0]
+      step = 1
+    }
+    if (count.length == 2) {
+      start = count[0]
+      end = count[1]
+      step = 1
+    }
+    if (count.length == 3) {
+      start = count[0]
+      end = count[1]
+      step = count[2]
+    }
+    if (step < 0) {
+      step = -step
+    }
+    while (start == end) {
+      return result
+    }
+    while (start > end) {
+      if (step == 0) {
+        result.push(start)
+        end--
+      } else {
+        result.push(start)
+        start -= step
+      }
 
     }
+    while (start < end) {
+      if (step == 0) {
+        result.push(start)
+        end--
+      } else {
+        result.push(start)
+        start -= step
+      }
+    }
+    return result
   },
-  xconcat: function () { },
+  concat: function (array, values) {
+    let count = []
+    let result = []
+    count.push(...arguments)
+    result.push(...array)
+    for (var i = 1; i < count.length; i++) {
+      if (Array.isArray(count[i])) {
+        result.push(...count[i])
+      } else {
+        result.push(count[i])
+      }
+    }
+    return result
+  },
   x: function () { },
   x: function () { },
   x: function () { },

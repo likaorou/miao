@@ -61,11 +61,7 @@ var likaorou = {
     let result = []
     for (let i = 0; i < array.length; i++) {
       if (Array.isArray(array[i])) {
-        let len = array[i].length
-        let count = array[i]
-        for (let c = 0; c < len; c++) {
-          result.push(count[c])
-        }
+        result.push(...array[i])
       } else {
         result.push(array[i])
       }
@@ -251,9 +247,10 @@ var likaorou = {
       return true
     } else if (typeof value == 'object') {
       if (value == true || value == false) {
-        return false
+        return true
       }
     }
+    return false
   },
   size: function (collection) {
     if (typeof collection == 'string' || Array.isArray(collection)) {

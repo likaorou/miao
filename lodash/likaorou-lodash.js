@@ -249,8 +249,10 @@ var likaorou = {
   isBoolean: function (value) {
     if (value === true || value === false) {
       return true
-    } else {
-      return false
+    } else if (typeof value == 'object') {
+      if (value == true || value == false) {
+        return false
+      }
     }
   },
   size: function (collection) {
@@ -305,7 +307,7 @@ var likaorou = {
       if (number % 1 !== 0) {
         let count = number % 1
         if (count < (1 / 10 ** precision)) {
-          number = number + 1 / 10 ** precision
+          number = number + 1 / 10 ** precision - count
           return number
         } else if (count % (1 / 10 ** precision) == 0) {
           return number
@@ -356,7 +358,7 @@ var likaorou = {
       }
     }
   },
-  range: function ({ start = 0, end, step = 1 }) {  //形参实参问题
+  range: function ({ start = 0, end, step = 1 }) {  //形参实参问题  
     let count = []
     let result = []
     count.push(...arguments)
@@ -397,7 +399,7 @@ var likaorou = {
         end--
       } else {
         result.push(start)
-        start -= step
+        start += step
       }
     }
     return result

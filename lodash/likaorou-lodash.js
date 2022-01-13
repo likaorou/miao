@@ -32,9 +32,13 @@ var likaorou = {
     }
     return result
   },
-  difference: function (array, value) {  //优化
+  difference: function (array, values) {  //优化
     let result = []
     let count = {}
+    let value = []
+    for (let i = 1; i < arguments.length; i++) {
+      value.push(...arguments[i])
+    }
     for (key in value) {
       count[value[key]] = 1
     }
@@ -335,7 +339,11 @@ var likaorou = {
       return true
     }
     if (typeof value == 'object') {
-      return value.toString() == '' + NaN
+      if (value.toString() == 'NaN') {
+        return false
+      } else {
+        return value.toString() == '' + NaN
+      }
     }
     return false
   },

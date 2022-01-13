@@ -90,7 +90,7 @@ var likaorou = {
     let count = []
     for (let i = 0; i < array.length; i++) {
       if (Array.isArray(array[i])) {
-        count = flattenDeep(array[i])
+        count = this.flattenDeep(array[i])
         result.push(...count)
       } else {
         result.push(array[i])
@@ -106,7 +106,7 @@ var likaorou = {
     let count = []
     for (let i = 0; i < array.length; i++) {
       if (Array.isArray(array[i])) {
-        count = flattenDepth(array[i], depth - 1)
+        count = this.flattenDepth(array[i], depth - 1)
         result.push(...count)
       } else {
         result.push(array[i])
@@ -339,7 +339,7 @@ var likaorou = {
       return true
     }
     if (typeof value == 'object') {
-      if (value.toString() == 'NaN') {
+      if (value == 'NaN') {
         return false
       } else {
         return value.toString() == '' + NaN

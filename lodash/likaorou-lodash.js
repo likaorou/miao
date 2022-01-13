@@ -32,6 +32,19 @@ var likaorou = {
     }
     return result
   },
+  difference: function (array, value) {  //优化
+    let result = []
+    let count = {}
+    for (key in value) {
+      count[value[key]] = 1
+    }
+    for (key in array) {
+      if (!(array[key] in count)) {
+        result.push(array[key])
+      }
+    }
+    return result
+  },
   drop: function (array, n = 1) {
     let result = []
     for (let i = n; i < array.length; i++) {
@@ -73,20 +86,29 @@ var likaorou = {
     let count = []
     for (let i = 0; i < array.length; i++) {
       if (Array.isArray(array[i])) {
-        count = this.flattenDeep(array[i])
-        if (result.length <= array.length) {
-          let c = result.length
-          for (let i = 0; i < count.length; i++) {
-            result[i + c] = count[i]
-          }
-        }
+        count = flattenDeep(array[i])
+        result.push(...count)
       } else {
         result.push(array[i])
       }
     }
     return result
   },
-  x: function (array, depth = 1) {
+  flattenDepth: function (array, depth = 1) {
+    if (depth == 0) {
+      return array
+    }
+    let result = []
+    let count = []
+    for (let i = 0; i < array.length; i++) {
+      if (Array.isArray(array[i])) {
+        count = flattenDepth(array[i], depth - 1)
+        result.push(...count)
+      } else {
+        result.push(array[i])
+      }
+    }
+    return result
   },
   fromPairs: function (pairs) {
     let obj = {}
@@ -121,6 +143,21 @@ var likaorou = {
       }
       return result
     }
+  },
+  intersection: function (arrays) {   //优化
+    let array = arguments[0]
+    let value = arguments[1]
+    let result = []
+    let count = {}
+    for (key in value) {
+      count[value[key]] = 1
+    }
+    for (key in array) {
+      if (array[key] in count) {
+        result.push(array[key])
+      }
+    }
+    return result
   },
   join: function (array, separator = ',') {
     let str = ''
@@ -171,7 +208,37 @@ var likaorou = {
     }
     return result
   },
-  x: function () { },
+  uniqBy: function (array, iteratee) {    //有问题
+    if (typeof iteratee == 'function') {
+      let result = [array[0]]
+      for (let i = 1; i < array.length; i++) {
+        let count = iteratee(array[i])
+        for (let j = 0; j < result.length; j++) {
+          if (count == iteratee(array[j])) {
+            break
+          } else if (j == result.length - 1) {
+            result.push(array[i])
+          }
+        }
+      }
+      return result
+    }
+    if (typeof iteratee == 'string') {
+      let result = [array[0]]
+      for (let i = 1; i < array.length; i++) {
+        let count = array[i][iteratee]
+        for (let j = 0; j < result.length; j++) {
+          if (count == array[j][iteratee]) {
+            break
+          } else if (j == result.length - 1) {
+            result.push(array[i])
+          }
+        }
+      }
+      return result
+    }
+    return array[0]
+  },
   without: function (array, values) {
     let count = []
     let result = []
@@ -263,8 +330,14 @@ var likaorou = {
       return count.length
     }
   },
-  xisNaN: function (value) {
-
+  isNaN: function (value) {
+    if (value !== value) {
+      return true
+    }
+    if (typeof value == 'object') {
+      return value.toString() == '' + NaN
+    }
+    return false
   },
   isNumber: function (value) {
     if (typeof value == 'number') {

@@ -107,8 +107,10 @@ var likaorou = {
     let result = []
     for (let i = 0; i < array.length; i++) {
       if (typeof predicate == 'function') {
-        if (!predicate(array[i], i, array)) {
-          result.push(array[i])
+        if (predicate(array[i])) {
+          arry = array.shift()
+        } else {
+          return result = array
         }
       }
       if (Array.isArray(predicate)) {

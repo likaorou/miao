@@ -95,9 +95,9 @@ var likaorou = {
         }
       }
       if (typeof predicate == 'string') {
-        delete array[i][predicate]
         for (key in array[i]) {
           result.push(array[i])
+          break
         }
       }
     }
@@ -108,7 +108,7 @@ var likaorou = {
     for (let i = 0; i < array.length; i++) {
       if (typeof predicate == 'function') {
         if (!predicate(array[i])) {
-          for (key in array[i]) {
+          for (key in array) {
             result.push(array[i])
             break
           }
@@ -134,9 +134,9 @@ var likaorou = {
         }
       }
       if (typeof predicate == 'string') {
-        delete array[i][predicate]
         for (key in array[i]) {
           result.push(array[i])
+          break
         }
       }
     }
@@ -400,7 +400,7 @@ var likaorou = {
   },
   x: function () { },
   x: function () { },
-  map: function (collection, iteratee) {
+  xmap: function (collection, iteratee) {
     if (typeof iteratee != 'function') {
       iteratee = shorthand(iteratee)
     }

@@ -107,11 +107,8 @@ var likaorou = {
     let result = []
     for (let i = 0; i < array.length; i++) {
       if (typeof predicate == 'function') {
-        if (!predicate(array[i])) {
-          for (key in array) {
-            result.push(array[i])
-            break
-          }
+        if (!predicate(array[i], i, array)) {
+          result.push(array[i])
         }
       }
       if (Array.isArray(predicate)) {
@@ -400,22 +397,8 @@ var likaorou = {
   },
   x: function () { },
   x: function () { },
-  map: function (collection, iteratee) {
-    if (typeof iteratee != 'function') {
-      iteratee = shorthand(iteratee)
-    }
-    if (Array.isArray(collection)) {
-      let result = []
-      collection.forEach(result.push(iteratee(item, 0, collection)))
-      return result
-    }
-    if (typeof collection == "object") {
-      let result = []
-      for (key in collection) {
-        result.push(iteratee(collection[key], key, collection))
-      }
-      return result
-    }
+  xmap: function (collection, iteratee) {
+
   },
   x: function () { },
   x: function () { },

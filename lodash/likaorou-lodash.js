@@ -64,15 +64,120 @@ var likaorou = {
     }
     return array = result
   },
-  x: function () { },
-  x: function () { },
+  dropRightWhile: function (array, predicate) { //有问题
+    let result = []
+    for (let i = 0; i < array.length; i++) {
+      if (typeof predicate == 'function') {
+        if (!predicate(array[i])) {
+          for (key in array[i]) {
+            result.push(array[i][key])
+            break
+          }
+        }
+      }
+      if (Array.isArray(predicate)) {
+        if (predicate[0] in array[i]) {
+          if (array[i][predicate[0]] !== predicate[1]) {
+            for (key in array[i]) {
+              result.push(array[i][key])
+              break
+            }
+          }
+        }
+      } else if (typeof predicate == 'object') {
+        for (key in predicate) {
+          if (key in array[i]) {
+            if (array[i][key] !== predicate[key]) {
+              result.push(array[i][key])
+              break
+            }
+          }
+        }
+      }
+      if (typeof predicate == 'string') {
+        delete array[i][predicate]
+        for (key in array[i]) {
+          result.push(array[i][key])
+        }
+      }
+    }
+    return result
+  },
+  dropWhile: function (array, predicate) {  //有问题
+    let result = []
+    for (let i = 0; i < array.length; i++) {
+      if (typeof predicate == 'function') {
+        if (!predicate(array[i])) {
+          for (key in array[i]) {
+            result.push(array[i][key])
+            break
+          }
+        }
+      }
+      if (Array.isArray(predicate)) {
+        if (predicate[0] in array[i]) {
+          if (array[i][predicate[0]] !== predicate[1]) {
+            for (key in array[i]) {
+              result.push(array[i][key])
+              break
+            }
+          }
+        }
+      } else if (typeof predicate == 'object') {
+        for (key in predicate) {
+          if (key in array[i]) {
+            if (array[i][key] !== predicate[key]) {
+              result.push(array[i][key])
+              break
+            }
+          }
+        }
+      }
+      if (typeof predicate == 'string') {
+        delete array[i][predicate]
+        for (key in array[i]) {
+          result.push(array[i][key])
+        }
+      }
+    }
+    return result
+  },
   fill: function (array, value, start = 0, end = array.length) {
     for (let i = start; i < end; i++) {
       array[i] = value
     }
     return array
   },
-  x: function () { },
+  findIndex: function (array, predicate, fromIndex = 0) {
+    for (let i = fromIndex; i < array.length; i++) {
+      if (typeof predicate == 'function') {
+        if (predicate(array[i])) {
+          return i
+        }
+        continue
+      }
+      if (Array.isArray(predicate)) {
+        if (array[i][predicate[0]] == predicate[1]) {
+          return i
+        }
+        continue
+      } else if (typeof predicate == 'object') {
+        for (key in predicate) {
+          if (array[i][key] == predicate[key]) {
+            return i
+          }
+          break
+        }
+        continue
+      }
+      if (typeof predicate == 'string') {
+        if (array[i][predicate]) {
+          return i
+        }
+        continue
+      }
+    }
+  },
   x: function () { },
   flatten: function (array) {
     let result = []
@@ -295,7 +400,23 @@ var likaorou = {
   },
   x: function () { },
   x: function () { },
-  x: function () { },
+  map: function (collection, iteratee) {
+    if (typeof iteratee !== 'function') {
+      iteratee = shorthand(iteratee)
+    }
+    if (Array.isArray(collection)) {
+      let result = []
+      collection.forEach(result.push(iteratee(item)))
+      return result
+    }
+    if (typeof collection == "object") {
+      let result = []
+      for (key in collection) {
+        result.push(iteratee(collection[key]))
+      }
+      return result
+    }
+  },
   x: function () { },
   x: function () { },
   x: function () { },

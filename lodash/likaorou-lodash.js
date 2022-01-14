@@ -400,19 +400,19 @@ var likaorou = {
   },
   x: function () { },
   x: function () { },
-  xmap: function (collection, iteratee) {
+  map: function (collection, iteratee) {
     if (typeof iteratee != 'function') {
       iteratee = shorthand(iteratee)
     }
     if (Array.isArray(collection)) {
       let result = []
-      collection.forEach(result.push(iteratee(item)))
+      collection.forEach(result.push(iteratee(item, 0, collection)))
       return result
     }
     if (typeof collection == "object") {
       let result = []
       for (key in collection) {
-        result.push(iteratee(collection[key]))
+        result.push(iteratee(collection[key], key, collection))
       }
       return result
     }

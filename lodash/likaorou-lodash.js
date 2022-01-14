@@ -70,7 +70,7 @@ var likaorou = {
       if (typeof predicate == 'function') {
         if (!predicate(array[i])) {
           for (key in array[i]) {
-            result.push(array[i][key])
+            result.push(array[i])
             break
           }
         }
@@ -79,7 +79,7 @@ var likaorou = {
         if (predicate[0] in array[i]) {
           if (array[i][predicate[0]] !== predicate[1]) {
             for (key in array[i]) {
-              result.push(array[i][key])
+              result.push(array[i])
               break
             }
           }
@@ -88,7 +88,7 @@ var likaorou = {
         for (key in predicate) {
           if (key in array[i]) {
             if (array[i][key] !== predicate[key]) {
-              result.push(array[i][key])
+              result.push(array[i])
               break
             }
           }
@@ -97,7 +97,7 @@ var likaorou = {
       if (typeof predicate == 'string') {
         delete array[i][predicate]
         for (key in array[i]) {
-          result.push(array[i][key])
+          result.push(array[i])
         }
       }
     }
@@ -109,7 +109,7 @@ var likaorou = {
       if (typeof predicate == 'function') {
         if (!predicate(array[i])) {
           for (key in array[i]) {
-            result.push(array[i][key])
+            result.push(array[i])
             break
           }
         }
@@ -118,7 +118,7 @@ var likaorou = {
         if (predicate[0] in array[i]) {
           if (array[i][predicate[0]] !== predicate[1]) {
             for (key in array[i]) {
-              result.push(array[i][key])
+              result.push(array[i])
               break
             }
           }
@@ -127,7 +127,7 @@ var likaorou = {
         for (key in predicate) {
           if (key in array[i]) {
             if (array[i][key] !== predicate[key]) {
-              result.push(array[i][key])
+              result.push(array[i])
               break
             }
           }
@@ -136,7 +136,7 @@ var likaorou = {
       if (typeof predicate == 'string') {
         delete array[i][predicate]
         for (key in array[i]) {
-          result.push(array[i][key])
+          result.push(array[i])
         }
       }
     }
@@ -401,7 +401,7 @@ var likaorou = {
   x: function () { },
   x: function () { },
   map: function (collection, iteratee) {
-    if (typeof iteratee !== 'function') {
+    if (typeof iteratee != 'function') {
       iteratee = shorthand(iteratee)
     }
     if (Array.isArray(collection)) {

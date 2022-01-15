@@ -105,39 +105,24 @@ var likaorou = {
   },
   dropWhile: function (array, predicate) {  //有问题
     let result = []
-    for (let i = 0; i < array.length; i++) {
+    while (array.length > 0) {
       if (typeof predicate == 'function') {
-        if (predicate(array[i])) {
+        if (predicate(array[0])) {
           arry = array.shift()
         } else {
-          return result = array
+          result = array
+          break
         }
-      }
-      if (Array.isArray(predicate)) {
-        if (predicate[0] in array[i]) {
-          if (array[i][predicate[0]] !== predicate[1]) {
-            for (key in array[i]) {
-              result.push(array[i])
-              break
-            }
-          }
-        }
-      } else if (typeof predicate == 'object') {
-        for (key in predicate) {
-          if (key in array[i]) {
-            if (array[i][key] !== predicate[key]) {
-              result.push(array[i])
-              break
-            }
-          }
-        }
-      }
-      if (typeof predicate == 'string') {
-        for (key in array[i]) {
-          result.push(array[i])
+      } else {
+        predicate = shorthand(predicate)
+        if (predicate(array[0], 0, array)) {
+          array = array.shift()
+        } else {
+          result = array
           break
         }
       }
+      return result
     }
     return result
   },

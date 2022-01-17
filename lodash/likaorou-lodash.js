@@ -380,7 +380,7 @@ var likaorou = {
       collection[key] = iteratee(collection[key], key, collection)
     }
     return collection
-  },
+  },/*
   groupBy: function (collection, iteratee) {
     let result = {}
     if (typeof iteratee !== 'function') {
@@ -394,7 +394,7 @@ var likaorou = {
       }
     }
     return result
-  },
+  },*/
   x: function () { },
   map: function (collection, iteratee) {
     let result = []

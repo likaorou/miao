@@ -388,9 +388,9 @@ var likaorou = {
     }
     for (key in collection) {
       if (iteratee(collection[key]) in result) {
-        result.iteratee(collection[key]).push(collection[key])
+        result[iteratee(collection[key]) + ''].push(collection[key])
       } else {
-        result.iteratee(collection[key]) = [collection[key]]
+        result[iteratee(collection[key]) + ''] = [collection[key]]
       }
     }
     return result

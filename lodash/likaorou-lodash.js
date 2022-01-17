@@ -121,7 +121,7 @@ var likaorou = {
   findIndex: function (array, predicate, fromIndex = 0) {
     for (let i = fromIndex; i < array.length; i++) {
       if (typeof predicate !== 'function') {
-        predicate = func(predicate)
+        predicate = this.func(predicate)
       }
       if (predicate(array[i])) {
         return i

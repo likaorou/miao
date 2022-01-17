@@ -7,14 +7,14 @@ var likaorou = {
       }
     } else if (typeof item == 'object') {
       predicate = function (ary) {
-        return JSON.stringify(item) == JSON.stringify(ary) || JSON.stringify(ary).includes(JSON.stringify(item))
+        return JSON.stringify(item) == JSON.stringify(ary) || JSON.stringify(ary).slice(1).includes(JSON.stringify(item).slice(1))
       }
     } else {
       predicate = function (ary) {
         if (typeof ary == 'string') {
           return ary.length
         }
-        return ary[item]
+        return ary[item] || ary[item[0]][item[2]]
       }
     }
     return predicate
@@ -377,10 +377,10 @@ var likaorou = {
   },
   forEach: function (collection, iteratee) { // 有问题
     for (key in collection) {
-      collection[key] = iteratee(collection[key], key, collection)
+      iteratee(collection[key], key, collection)
     }
     return collection
-  },/*
+  },
   groupBy: function (collection, iteratee) {
     let result = {}
     if (typeof iteratee !== 'function') {
@@ -394,9 +394,9 @@ var likaorou = {
       }
     }
     return result
-  },*/
+  },
   x: function () { },
-  map: function (collection, iteratee) {
+  map: function (collection, iteratee) {  //iteratee 为 a.b时有问题
     let result = []
     if (typeof iteratee !== 'function') {
       iteratee = this.func(iteratee)

@@ -387,10 +387,11 @@ var likaorou = {
       iteratee = this.func(iteratee)
     }
     for (key in collection) {
+      let item = iteratee(collection[key]) + ''
       if (iteratee(collection[key]) in result) {
-        result[iteratee(collection[key]) + ''].push(collection[key])
+        result[item].push(collection[key])
       } else {
-        result[iteratee(collection[key]) + ''] = [collection[key]]
+        result[item] = [collection[key]]
       }
     }
     return result

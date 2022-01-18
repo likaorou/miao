@@ -403,7 +403,7 @@ var likaorou = {
       iteratee = this.func(iteratee)
     }
     for (i in collection) {
-      result.push(iteratee(collection[i], i, collection))
+      result.push(iteratee(collection[i], Number(i), collection))
     }
     return result
   },

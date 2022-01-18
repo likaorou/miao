@@ -14,7 +14,7 @@ var likaorou = {
         if (typeof ary == 'string') {
           return ary.length
         }
-        return ary[item] || ary[item[0]][item[2]]
+        return ary[item] //|| ary[item[0]][item[2]]
       }
     }
     return predicate

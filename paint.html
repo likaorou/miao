@@ -25,37 +25,6 @@
     ctx.fillStyle = color
     ctx.fillRect(x, y, 1, 1)
   }
-  /**
-   * YOUR TASK
-      * 在 坐标 (42, 42) 画出一个点
-      * 画一条实线
-      * 画一条一个实点一个空点的虚线
-      * 画一条两个实点两个空点的虚线
-      * 画一条三个实点两个空点的虚线
-      * 画一条45度的斜线
-      * 画一条30度的斜线（与x轴或y轴的夹角呈30度）
-      * 画一条跨越画布左上角和右下角的对角线
-      * 画一个空心矩形
-      * 画一个实心矩形
-      * 画两个个空心的圆，居中：
-        * 一个半径为50像素
-        * 一个半径为200像素
-      * 画一个实心的圆，半径至少为100像素
-      * 画一个【大小合适】的sin(x)的图像
-
-      * 画出rgb色彩空间的某一面（尺寸要大于100x100）
-        如果做出上一题后，尝试将其每个点的坐标乘以一个矩阵（如(2,0,0,2)或(1,0.27得到新的位置，即绘制出被线性变幻后的色彩空间某一面
-        可以考虑如下几种矩阵：
-           2 0
-           0 2
-           ------
-           1  0.27
-           0  1
-           ------
-           0.5    0.87
-           -0.87  0.5
-
-   */
 </script>
 <script>
   // 不可更改上面的代码
@@ -64,39 +33,34 @@
 
 
   // 在 坐标 (42, 42) 画出一个点
-  dot(42,42)
+  dot(42, 42)
   // 画一条实线
   for (var i = 0; i <= 500; i++) {
-    dot(i,70)
+    dot(i, 70)
   }
   // 画一条一个实点一个空点的虚线
-  for (var i = 0; i <= 500; i++) {
-    if (i % 2 == 0) {
-      dot(i, 72)
-    }
+  for (var i = 0; i <= 500; i+=2) {
+    dot(i, 75)
   }
+  
   // 画一条两个实点两个空点的虚线
-  for (var i = 0; i <= 500; i++) {
-    for (var c = 0; c < 2; c++) {
-      dot(i, 74)
-      i = i + 1
-    }
-    i = i + 1
+  for (var i = 0; i <= 500; i+=4) {
+    dot(i, 80)
+    dot(i + 1, 80)
+    
   }
   // 画一条三个实点两个空点的虚线
   for (var i = 0; i <= 500; i++) {
-    for(var c = 0; c < 3; c++) {
-      dot(i, 76)
-      i = i + 1
+    if(i % 5 < 3) {
+      dot(i, 85)
     }
-    i = i + 1
   }
   // 画一条45度的斜线
-  for (var i = 0; i <= 500; i++) {
+  for (var i = 0; i <= 50; i++) {
     dot(i, i)
   }
   // 画一条30度的斜线（与x轴或y轴的夹角呈30度）
-  for(var i = 0; i <= 500; i++) {
+  for(var i = 0; i <= 50; i++) {
     var y = Math.sqrt(3) / 3 * i
     dot(i, y)
   }
@@ -106,44 +70,47 @@
     dot(i, y)
   }
   // 画一个空心矩形
-  for (var x = 30; x <= 60; x++) {
+  for (var x = 20; x <= 50; x++) {
     for(var y = 100; y <= 140; y++) {
       if(y == 100 || y == 140){
         dot(x, y)
       }
-      if(x == 30 || x == 60) {
+      if(x == 20 || x == 50) {
         dot(x, y)
       }
     }
   }
   // 画一个实心矩形
-  for (var x = 30; x <= 60; x++) {
+  for (var x = 15; x <= 45; x++) {
     for(var y = 160; y <= 200; y++) {
       dot(x,y)
     }
   }
   // 画两个个空心的圆，居中：
-  // 一个半径为50像素 250 200
-  for (var x = 200; x <= 300; x++) {
-    for (var y = 150; y <= 250; y++) {
-      var X = (x - 250) * (x - 250)
-      var Y = (y - 200) * (y - 200)
-      if (Math.sqrt(X + Y).toFixed(0) == 50) {
-        dot(x, y)
+  // 一个半径为50像素 250 200  x+1, y   x+1, y - 1
+  function circle(cx, cy, r) {
+    var x = 0
+    var y = r
+    for(var i = 0; x <= y; i++) {
+      dot(x + cx, y + cy)
+      dot(x + cx, -y + cy)
+      dot(-x + cx, y + cy)
+      dot(-x + cx, -y + cy)
+      dot(y + cx, x + cy)
+      dot(y + cx, -x + cy)
+      dot(-y + cx, x + cy)
+      dot(-y + cx, -x + cy)
+      x = x + 1
+      var aLength = (x) * (x) + y * y
+      var bLength = (x) * (x) + (y - 1) * (y - 1)
+      if (Math.abs(aLength - r * r) > Math.abs(bLength - r * r)) {
+        y = y - 1
       }
-      
     }
   }
+  circle(250,200,50)
   // 一个半径为200像素
-  for (var x = 50; x <= 450; x++) {
-    for (var y = 0; y <= 400; y++) {
-      var X = (x - 250) * (x - 250)
-      var Y = (y - 200) * (y - 200)
-      if (Math.sqrt(X + Y).toFixed(0) == 200) {
-        dot(x, y)
-      }
-    }
-  }
+  circle(250,200,200)
   // 画一个实心的圆，半径至少为100像素 100 300  
   for (var x = 0; x <= 200; x++) {
     for (var y = 200; y <= 400; y++) {
@@ -172,14 +139,20 @@
            -0.87  0.5
 
    */
-  for (var x = 200; x <= 345; x++) {
-    for(var y = 0; y <= 145; y++) {
+
+  for (var x = 100; x <= 200; x++) {
+    for(var y = 0; y <= 100; y++) {
       var r = 255
-      var g = x - 200
-      var b = y
-      dot(x,y,color = 'rgb(' + r + ',' + g + ',' + b + ')')
+      var g = x + 20
+      var b = y + 50
+      dot(x, y, color = 'rgb(' + 255 + ',' + g + ',' + b + ')')
+      
+      dot(2 * x, 2 * y, color = 'rgb(' + 255 + ',' + g + ',' + b + ')')
+      dot(x+120, (0.27 * x + y)+225, color = 'rgb(' + 255 + ',' + g + ',' + b + ')')
+      dot((0.5*x-0.87*y)+380, (0.87 * x + 0.5*y)+120, color = 'rgb(' + 255 + ',' + g + ',' + b + ')')
     }
   }
+  
 
   
 </script>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My-Regex-101</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      height: 50px;
+      background-color: #2c5297;
+      color: #f7f7f7;
+    }
+
+    h1 {
+      margin: 0;
+      padding-left: 10px;
+    }
+
+    .func {
+      display: flex;
+      background-color: #e5e5e5;
+      flex: 1;
+    }
+
+    .common {
+      background-color: #f7f7f7;
+      flex: 1;
+      margin: 8px;
+    }
+
+    .character {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .expression {
+      margin: 0;
+      background-color: #e5e5e5;
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 0;
+    }
+
+    .regex {
+
+      flex: 1;
+    }
+
+    .test {
+      flex: 3;
+    }
+
+    .substitution {
+      flex: 3;
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    strong:nth-child(odd) {
+      background-color: #d5ebff;
+    }
+
+    strong:nth-child(even) {
+      background-color: #9fcfff;
+    }
+
+    strong:empty {
+      display: inline-block;
+      background-color: purple;
+      width: 2px;
+      height: 1.3em;
+      margin-left: -1px;
+      margin-right: -1px;
+      vertical-align: bottom;
+    }
+
+    em {
+      font-style: normal;
+    }
+
+    em:hover {
+      box-shadow: 0 0 2px black;
+      position: relative;
+      z-index: 8;
+    }
+
+    em:hover em {
+      background-color: transparent !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>My regular expressions</h1>
+  </div>
+  <div class="func">
+    <div class="common character">
+      <h4 style="color: #344f71;">正则语法</h4>
+      <table border="1" align="center" cellspacing="0px" style="margin-left: 8px; margin-right: 8px;">
+        <thead>
+          <tr align="center">
+            <th>元字符</th>
+            <th>描述</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr align="center">
+            <td>.</td>
+            <td>句号匹配任意单个字符除了换行符。</td>
+          </tr>
+          <tr align="center">
+            <td>[]</td>
+            <td>字符种类。匹配方括号内的任意字符。</td>
+          </tr>
+          <tr align="center">
+            <td>*</td>
+            <td>匹配 >=0 个重复的在*号之前的符号。</td>
+          </tr>
+          <tr align="center">
+            <td>+</td>
+            <td>匹配 >= 1 个重复的+号前的符号。</td>
+          </tr>
+          <tr align="center">
+            <td>?</td>
+            <td>标记 ? 之前的符号为可选。</td>
+          </tr>
+          <tr align="center">
+            <td>{n,m}</td>
+            <td>匹配num个大括号之前的字符或字符集(n<=num<=m)。 </td>
+          </tr>
+          <tr align="center">
+            <td>(xyz)</td>
+            <td>字符集，匹配与 xyz 完全相等的字符串。</td>
+          </tr>
+          <tr align="center">
+            <td>|</td>
+            <td>或运算，匹配符号前或后的字符。</td>
+          </tr>
+          <tr align="center">
+            <td>\</td>
+            <td>转义字符，用于匹配一些保留的字符 | [ ] ( ) { } . * + ? ^ $ \。</td>
+          </tr>
+          <tr align="center">
+            <td>^</td>
+            <td>从开始行开始匹配。</td>
+          </tr>
+          <tr align="center">
+            <td>$</td>
+            <td>从末端开始匹配。</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+
+    <div class="common expression">
+      <div class="regex" style=" width: 100%;">
+        <h4 style="color: #344f71; margin-bottom: 8px;">REGULAR EXPRESSION</h4>
+        <hr>
+        <div style="display:flex; width: 100%;">
+          <input style="flex: 3; height: 30px; font-size: 1em;" type="text" id="regexInput" value="f.." oninput="run()"
+            placeholder="insert your regular expression here">
+          <div style="margin-left:8px; display: flex; align-items: center;">
+            <label>g<input type="checkbox" id="flagGlobal" checked onclick="run()"></label>
+            <label>m<input type="checkbox" id="flagMutiline" onclick="run()"></label>
+            <label>i<input type="checkbox" id="flagIgnoreCase" onclick="run()"></label>
+          </div>
+        </div>
+      </div>
+      <div class="test" style=" width: 100%;">
+        <h4 style="color: #344f71; margin-bottom: 8px;">TEST STRING</h4>
+        <hr>
+
+        <pre
+          style="overflow: auto; font-size: 1.8em; height: 70%; background-color: #fff; border-radius: 4px; margin-top: 8px;"
+          aria-placeholder="insert your test string here" contenteditable id="testStringInput"
+          oninput="run() ;getSubstitution()">dfa fas dg dfafds</pre>
+
+      </div>
+
+      <div class="substitution" style=" width: 100%;">
+        <h4 style=" color: #144179; margin-bottom: 8px;">SUBSTITUTION</h4>
+        <hr>
+        <input type="text" id="subInput" style="width: 99%; height: 30px; font-size: 1em;"
+          placeholder="insert your replacement value here" oninput="getSubstitution()">
+        <pre id="subShow"
+          style="overflow: auto; font-size: 1.8em; height: 62%; background-color: #fff; border-radius: 4px; margin-top: 8px;">
+        </pre>
+      </div>
+    </div>
+
+    <div class="common description">
+      <!-- <h4 style="color: #344f71;">MATCH INFORMATION</h4> -->
+      <h4 style="color: #344f71;">正则简写</h4>
+      <table border="1" align="center" cellspacing="0px" style="margin-left: 8px; margin-right: 8px;">
+        <thead>
+          <tr align="center">
+            <th>简写</th>
+            <th>描述</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr align="center">
+            <td>\w</td>
+            <td>匹配所有字母数字，等同于 [a-zA-Z0-9_]</td>
+          </tr>
+          <tr align="center">
+            <td>\W</td>
+            <td>匹配所有非字母数字，即符号，等同于：[^\w]</td>
+          </tr>
+          <tr align="center">
+            <td>\d</td>
+            <td>匹配数字：[0-9]</td>
+          </tr>
+          <tr align="center">
+            <td>\D</td>
+            <td>匹配非数字：[^\d]</td>
+          </tr>
+          <tr align="center">
+            <td>\s</td>
+            <td>匹配所有空格字符，等同于：[\t\n\f\r\p{Z}]</td>
+          </tr>
+          <tr align="center">
+            <td>\S</td>
+            <td>匹配所有非空格字符：[^\s]</td>
+          </tr>
+          <tr align="center">
+            <td>\n</td>
+            <td>匹配一个换行符</td>
+          </tr>
+          <tr align="center">
+            <td>\r</td>
+            <td>匹配一个回车符</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <script>
+    //标签的id作为变量访问这个标签的dom节点
+    // function scrollSync() {
+    //   resultShow.scrollTop = testStringInput.scrollTop
+    // }
+
+    // var position = {}
+    // // 鼠标松开事件(鼠标松开的时候就获取当前选中的select)
+    // document.onmouseup = function (e) {
+    //   var rangeTextareaDom = testStringInput
+    //   position.start = rangeTextareaDom.selectionStart
+    //   position.end = rangeTextareaDom.selectionEnd
+    // }
+
+
+
+
+
+
+    function run() {
+
+      let regexStr = regexInput.value
+      let testStr = testStringInput.textContent
+      let flags = getFlags()
+      let regex
+      if (regexStr.length == 0) {
+        testStringInput.innerHTML = testStr
+        return
+      }
+      try {
+        regex = new RegExp(regexStr, flags + 'd')
+      } catch (e) {
+        if (e instanceof SyntaxError) {
+          testStringInput.innerHTML = testStr + '\n'
+          return
+        } else {
+          throw e
+        }
+      }
+
+      let match
+      let resultHtml = ''
+      let startIdx = 0
+      let matchCount = 0
+      // console.log(regex)
+      while (match = regex.exec(testStr)) {
+        matchCount++
+        resultHtml += testStr.slice(startIdx, match.index)
+        resultHtml += `<strong title ="Match ${matchCount}\nPos: ${match.index}-${match.index + match[0].length}">` + highlightGroups(match, matchCount) + `</strong>`
+
+        startIdx = regex.lastIndex
+        if (match[0] == '') {   //如果匹配到的是空白内容，则主动增加lastIndex，否则死循环
+          regex.lastIndex++
+        }
+        if (!regex.global) {
+          //如果正则不带g标记，则lastIndex不会更新，一直是0
+          startIdx = match.index + match[0].length
+          break
+        }
+      }
+
+      let a = window.getSelection().focusNode == null ? null : window.getSelection().focusNode
+      let b = window.getSelection().focusOffset
+
+
+
+
+      // let d = a == null ? -1 : window.getSelection().getRangeAt(0).startContainer
+      console.log('a', a)
+      for (let i = 0; i < testStringInput.childNodes.length; i++) {
+        if (a == null) {
+          break
+        }
+        if (testStringInput.childNodes[i].textContent == a.data) {
+          a = i
+        }
+      }
+
+
+
+
+      console.log(window.getSelection().focusNode)
+
+      resultHtml += testStr.slice(startIdx)
+
+
+      testStringInput.innerHTML = resultHtml
+
+      setFocus(testStringInput, a, b)
+
+    }
+
+    function getFlags() {
+      let flag = ''
+      if (flagGlobal.checked) {
+        flag += 'g'
+      }
+      if (flagMutiline.checked) {
+        flag += 'm'
+      }
+      if (flagIgnoreCase.checked) {
+        flag += 'i'
+      }
+      return flag
+    }
+
+    function highlightGroups(match, matchCount) {
+      let groupColors = [
+        '#c4e8ac',
+        '#f6d7a6',
+        '#c8c8ff',
+        '#f2cfff',
+        '#ffc5bf',
+        '#c8e7d6',
+      ]
+      let matchString = match[0]
+
+      let groupRanges = match.indices.map(range => {
+        let start = range[0]
+        let end = range[1]
+        return [start - match.index, end - match.index]
+      })   //每个捕获在匹配到的字符串中的下标范围
+      groupRanges.shift()   //删掉第一项
+      let matchChars = match[0].split('')
+      let tags = new Array(match[0].length + 1).fill('')
+      let startIdx = 0
+      // let groupCount = 1
+      for (let range of groupRanges) {
+        startIdx++
+        let start = range[0]
+        let end = range[1]
+        tags[start] += `<em style="background-color:${groupColors[startIdx - 1]}" title="Group: ${startIdx}\nPos: ${start + match.index}-${end + match.index}">`
+        tags[end] += `</em>`
+      }
+
+      let result = ''
+      for (var i = 0; i < matchChars.length; i++) {
+        result += tags[i] + matchChars[i]
+      }
+      result += tags[i]
+      return result
+    }
+
+    function getSubstitution() {
+      let regexStr = regexInput.value
+      let subStr = subInput.value
+      let testStr = testStringInput.textContent
+      let flags = getFlags()
+      let regex
+      if (regexStr.length == 0 || subStr.length == 0) {
+        subShow.innerHTML = ''
+        return
+      }
+      try {
+        regex = new RegExp(regexStr, flags + 'd')
+      } catch (e) {
+        if (e instanceof SyntaxError) {
+          subShow.innerHTML += ''
+          return
+        } else {
+          throw e
+        }
+      }
+      subShow.innerHTML = testStr.replace(regex, subStr)
+    }
+
+
+
+    function setFocus(obj, a, b,) {
+
+      console.log('node: ' + a + ' index: ' + b)
+      if (a == null) {
+        return
+      }
+
+      if (testStringInput.childNodes[a].textContent.length < b) {
+        console.log(a, b)
+
+        b = b - testStringInput.childNodes[a].textContent.length
+        a++
+        console.log(a, b)
+      }
+      p = obj
+      let s = window.getSelection()
+      let r = document.createRange()
+
+      // for (let i = 0; i < testStringInput.childNodes[a].textContent.length; i++) {
+      //   if (testStringInput.childNodes[a].tagName == 'STRONG') {
+      //     let c = document.createElement('div')
+      //     c.style.display = 'none'
+      //     testStringInput.childNodes[a].appendChild(c)
+      //   } else {
+      //     break
+      //   }
+      // }
+
+
+      r.setStart(testStringInput.childNodes[a], b);
+
+      // r.setStart(testStringInput.childNodes[a], b);
+      r.setEnd(testStringInput.childNodes[a], b);
+      s.removeAllRanges();
+      s.addRange(r);
+    }
+
+
+
+    run()
+  </script>
+
+</body>
+
+</html>
